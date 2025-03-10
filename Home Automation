@@ -1,0 +1,64 @@
+#include <SoftwareSerial.h>
+
+const int relay1 = 2;
+const int relay2 = 3;
+const int relay3 = 4;
+const int relay4 = 5;
+
+SoftwareSerial bluetooth(10, 11); // RX, TX
+
+void setup() {
+  pinMode(relay1, OUTPUT);
+  pinMode(relay2, OUTPUT);
+  pinMode(relay3, OUTPUT);
+  pinMode(relay4, OUTPUT);
+  
+  bluetooth.begin(9600);  // Initialize Bluetooth communication
+  Serial.begin(9600);     // Initialize serial communication for debugging
+}
+
+void loop() {
+  if (bluetooth.available() > 0) {  // Check if data is available from Bluetooth
+    char command = bluetooth.read(); // Read the incoming command
+    
+    if (command == '1') {
+      digitalWrite(relay1, HIGH);   // Turn Relay 1 ON
+      Serial.println("Relay 1 ON");
+    } 
+    else if (command == '0') {
+      digitalWrite(relay1, LOW);    // Turn Relay 1 OFF
+      Serial.println("Relay 1 OFF");
+    } 
+    else if (command == '2') {
+      digitalWrite(relay2, HIGH);   // Turn Relay 2 ON
+      Serial.println("Relay 2 ON");
+    } 
+    else if (command == '3') {
+      digitalWrite(relay2, LOW);    // Turn Relay 2 OFF
+      Serial.println("Relay 2 OFF");
+    } 
+    else if (command == '4') {
+      digitalWrite(relay3, HIGH);   // Turn Relay 3 ON
+      Serial.println("Relay 3 ON");
+    } 
+    else if (command == '5') {
+      digitalWrite(relay3, LOW);    // Turn Relay 3 OFF
+      Serial.println("Relay 3 OFF");
+    } 
+    else if (command == '6') {
+      digitalWrite(relay4, HIGH);   // Turn Relay 4 ON
+      Serial.println("Relay 4 ON");
+    } 
+    else if (command == '7') {
+      digitalWrite(relay4, LOW);    // Turn Relay 4 OFF
+      Serial.println("Relay 4 OFF");
+    }
+  }
+}
+
+  
+  
+  
+
+
+
